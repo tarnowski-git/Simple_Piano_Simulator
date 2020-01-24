@@ -1,6 +1,6 @@
 from tkinter import Tk, Frame, Entry, Button, StringVar, CENTER, DISABLED, FLAT
 from functools import partial
-import winsound
+import pygame
 
 
 class Main_Application(Frame):
@@ -19,6 +19,8 @@ class Main_Application(Frame):
     def __init__(self, master):
         super().__init__(master)
         self.master = master
+        # inital pygame for using sounds
+        pygame.init()
         self.black_buttons = list(range(len(self.BLACK)))
         self.white_buttons = list(range(len(self.WHITE)))
         # variable to show pressed button in text_box
@@ -115,8 +117,8 @@ class Main_Application(Frame):
 
     def play_sound(self, filename):
         """Function working only for Windows"""
-        winsound.PlaySound("assets\\music_notes\\{}".format(
-            filename), winsound.SND_ASYNC)
+        pygame.mixer.Sound("assets\\music_notes\\{}".format(
+            filename)).play()
 
 
 # Start program
